@@ -1,7 +1,8 @@
 name: pipeline-futebol
+
 on:
   schedule:
-    - cron: "41 16 * * *"   # todo dia 07:00
+    - cron: "41 16 * * *"   # 16:41 UTC = 13:41 Brasília
   workflow_dispatch:
 
 jobs:
@@ -10,13 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.12" }
-      - run: sudo apt-get update && sudo apt-get install -y libpq-dev
+        with:
+          python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python -c "import psycopg2, psycopg2.extensions; print(psycopg2.__version__, psycopg2.extensions.libpq_version())"
-      # - run: python -c "import os; print('FOOTBALL_API_TOKEN=', os.environ.get('FOOTBALL_API_TOKEN'))"
-      #   env:
-      #     FOOTBALL_API_TOKEN: ${{ secrets.FOOTBALL_API_TOKEN }}
       - run: python run_pipeline.py
         env:
           POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
@@ -24,5 +21,5 @@ jobs:
           PG_USER: ${{ secrets.PG_USER }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
           PG_DATABASE: dbanalytics
-          DBT_PROFILES_DIR: ${{ github.workspace }}
+          DBT_PROFILES_DIR: ${{ github.workspace }}/dbt_project
           FOOTBALL_API_TOKEN: ${{ secrets.FOOTBALL_API_TOKEN }}
