@@ -14,6 +14,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python run_pipeline.py
         env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
           PG_HOST: ${{ secrets.PG_HOST }}
           PG_USER: ${{ secrets.PG_USER }}
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
