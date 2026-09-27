@@ -85,7 +85,7 @@ if __name__ == "__main__":
                 "port": 5432,
                 "sslmode": "require",
             }
-        )
+        ),
         dataset_name="football_raw",
     )
     token = os.environ["FOOTBALL_API_TOKEN"]
