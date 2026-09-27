@@ -1,7 +1,7 @@
 name: pipeline-futebol
 on:
   schedule:
-    - cron: "30 16 * * *"   # todo dia 07:00
+    - cron: "41 16 * * *"   # todo dia 07:00
   workflow_dispatch:
 
 jobs:
