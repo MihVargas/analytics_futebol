@@ -1,12 +1,15 @@
-analytics_futebol:
-  target: dev
-  outputs:
-    dev:
-      type: postgres
-    host: "{{ env_var('PG_HOST') }}"
-    user: "{{ env_var('PG_USER') }}"
-    password: "{{ env_var('PG_PASSWORD') }}"
-    port: 5432
-    dbname: analytics_dw
-    schema: analytics
-    threads: 1
+name: analytics_futebol
+version: "1.0.0"
+config-version: 2
+
+profile: analytics_futebol
+
+model-paths: ["models"]
+test-paths: ["tests"]
+
+models:
+  analytics_futebol:          # <-- chave do projeto dentro de models (permitido)
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
