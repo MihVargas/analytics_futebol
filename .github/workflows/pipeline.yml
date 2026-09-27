@@ -1,0 +1,21 @@
+name: pipeline-futebol
+on:
+  schedule:
+    - cron: "30 16 * * *"   # todo dia 07:00
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python run_pipeline.py
+        env:
+          PG_HOST: ${{ secrets.PG_HOST }}
+          PG_USER: ${{ secrets.PG_USER }}
+          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+          PG_DATABASE: dbanalytics
+          DBT_PROFILES_DIR: ${{ github.workspace }}

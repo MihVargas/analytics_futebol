@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: football-dashboard
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run dash.py --server.port $PORT
+    envVars:
+      - key: POSTGRES_URL
+        sync: false   # cole manualmente a URL INTERNA do analytics_dw
+    healthCheckPath: /_stcore/health
