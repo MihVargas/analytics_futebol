@@ -1,0 +1,25 @@
+# ============================================================
+# Projeto: ETL/ELT open source para pequenas empresas
+# Stack: dlt (ingestão) → DuckDB (storage) → dbt (transformação) → Streamlit (dashboard)
+# Python recomendado: 3.10–3.12 (dlt suporta até 3.14, mas experimental)
+# ============================================================
+
+# --- Ingestão ---
+dlt[duckdb]>=1.0          # framework de ingestão + destino DuckDB
+xmltodict>=0.13.0         # parsing do XML da API do BoardGameGeek
+
+# --- Storage / Validação ---
+duckdb>=1.0               # banco local em arquivo (.duckdb)
+pyarrow>=16.0             # integração Arrow/Parquet do DuckDB
+
+# --- Transformação ---
+dbt-core>=1.8             # dbt-core (NÃO instalar "dbt" — é outro produto)
+dbt-duckdb>=1.11          # adaptador do dbt para DuckDB (exige duckdb >= 1.0)
+
+# --- Dashboard ---
+streamlit>=1.63           # dashboard interativo
+plotly>=5.22              # gráficos interativos no Streamlit
+
+# --- Utilidades ---
+pandas>=2.2               # manipulação de dados
+python-dotenv>=1.0        # carrega FOOTBALL_API_TOKEN do .env

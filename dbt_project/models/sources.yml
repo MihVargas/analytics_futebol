@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: football_raw
+    schema: football_raw
+    description: "Dados crus carregados pelo dlt a partir da API football-data.org"
+    tables:
+      - name: football_matches
+        description: "Partidas das competições CL, PD e BSA"
+      - name: football_standings
+        description: "Classificações das competições"
+      - name: football_teams
+        description: "Times das competições"

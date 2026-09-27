@@ -1,0 +1,8 @@
+/.DS_Store
+/.vscode
+
+.venv/
+*.duckdb
+logs/
+.env
+__pycache__/
