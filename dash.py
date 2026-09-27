@@ -6,9 +6,11 @@ import duckdb
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from dotenv import load_dotenv
 
 from sqlalchemy import create_engine
 
+load_dotenv(Path(__file__).parent / ".env")
 engine = create_engine(os.environ["POSTGRES_URL"])
 
 
