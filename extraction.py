@@ -76,7 +76,16 @@ if __name__ == "__main__":
 
     pipeline = dlt.pipeline(
         pipeline_name="football",
-        destination=postgres(credentials=os.environ["POSTGRES_URL"]),  # antes: duckdb
+        destination=postgres(
+            credentials={
+                "host": os.environ["PG_HOST"],
+                "username": os.environ["PG_USER"],
+                "password": os.environ["PG_PASSWORD"],
+                "database": "dbanalytics",
+                "port": 5432,
+                "sslmode": "require",
+            }
+        )
         dataset_name="football_raw",
     )
     token = os.environ["FOOTBALL_API_TOKEN"]
