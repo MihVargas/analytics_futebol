@@ -33,7 +33,6 @@ def load(sql: str) -> pd.DataFrame:
 
 # Lista as tabelas disponíveis no DuckDB (para diagnóstico amigável)
 available = load("SELECT table_schema, table_name FROM information_schema.tables ORDER BY 1, 2")
-st.sidebar.caption(f"Conectado em: `{DB_PATH.name}`")
 
 if not available.empty:
     st.sidebar.success(f"{len(available)} tabelas encontradas")
@@ -43,9 +42,9 @@ else:
 
 # ---------- KPI gerais ----------
 try:
-    matches = load("SELECT * FROM analytics_marts.fct_matches")
-    curse = load("SELECT * FROM analytics_marts.champion_curse")
-    standings = load("SELECT * FROM analytics_staging.stg_standings WHERE standing_type = 'TOTAL'")
+    matches = load("SELECT * FROM analytics.fct_matches")
+    curse = load("SELECT * FROM analytics.champion_curse")
+    standings = load("SELECT * FROM analytics.stg_standings WHERE standing_type = 'TOTAL'")
 except Exception as e:
     st.error(f"Não consegui carregar os marts: {e}\nRode `dbt run` e tente de novo.")
     st.stop()
