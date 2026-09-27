@@ -12,15 +12,15 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
-      - run: python -c "import os; print('HOST=', os.environ.get('PG_HOST'))"
+      - run: python -c "import os; print('FOOTBALL_API_TOKEN=', os.environ.get('FOOTBALL_API_TOKEN'))"
         env:
-          PG_HOST: ${{ secrets.PG_HOST }}
-      - run: python run_pipeline.py
-        env:
-          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
-          PG_HOST: ${{ secrets.PG_HOST }}
-          PG_USER: ${{ secrets.PG_USER }}
-          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-          PG_DATABASE: dbanalytics
-          DBT_PROFILES_DIR: ${{ github.workspace }}
           FOOTBALL_API_TOKEN: ${{ secrets.FOOTBALL_API_TOKEN }}
+      # - run: python run_pipeline.py
+      #   env:
+      #     POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+      #     PG_HOST: ${{ secrets.PG_HOST }}
+      #     PG_USER: ${{ secrets.PG_USER }}
+      #     PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+      #     PG_DATABASE: dbanalytics
+      #     DBT_PROFILES_DIR: ${{ github.workspace }}
+      #     FOOTBALL_API_TOKEN: ${{ secrets.FOOTBALL_API_TOKEN }}
