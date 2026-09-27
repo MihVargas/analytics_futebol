@@ -74,18 +74,11 @@ def football_standings(api_token: str, competitions: list):
 if __name__ == "__main__":
     config = FootballConfig()
 
+    prod_postgres = postgres(credentials=os.environ['POSTGRES_URL'])
+
     pipeline = dlt.pipeline(
         pipeline_name="football",
-        destination=postgres(
-            credentials={
-                "host": os.environ["PG_HOST"],
-                "username": os.environ["PG_USER"],
-                "password": os.environ["PG_PASSWORD"],
-                "database": "dbanalytics",
-                "port": 5432,
-                "sslmode": "require",
-            }
-        ),
+        destination=prod_postgres,
         dataset_name="football_raw",
     )
     token = os.environ["FOOTBALL_API_TOKEN"]
