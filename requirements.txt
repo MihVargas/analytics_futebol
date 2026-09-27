@@ -99,7 +99,7 @@ prometheus_client==0.26.0
 protobuf==6.33.6
 psycopg==3.3.6
 psycopg-binary==3.3.6
-psycopg2-binary==2.9.13
+psycopg2==2.9.13
 py-key-value-aio==0.4.6
 pyarrow==25.0.1
 pycparser==3.0

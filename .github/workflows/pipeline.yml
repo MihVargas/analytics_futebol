@@ -11,7 +11,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - run: sudo apt-get update && sudo apt-get install -y libpq-dev
       - run: pip install -r requirements.txt
+      - run: python -c "import psycopg2, psycopg2.extensions; print(psycopg2.__version__, psycopg2.extensions.libpq_version())"
       # - run: python -c "import os; print('FOOTBALL_API_TOKEN=', os.environ.get('FOOTBALL_API_TOKEN'))"
       #   env:
       #     FOOTBALL_API_TOKEN: ${{ secrets.FOOTBALL_API_TOKEN }}
